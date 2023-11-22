@@ -13,7 +13,16 @@
         android:theme="@style/Theme.Contactos"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".DeleteContactsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateContactsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListContactsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateContactsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

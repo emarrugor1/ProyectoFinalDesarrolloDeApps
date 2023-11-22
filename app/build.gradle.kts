@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "udc.edu.co.cipasoldschool.proyectofinal.contactos"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "udc.edu.co.cipasoldschool.proyectofinal.contactos"
