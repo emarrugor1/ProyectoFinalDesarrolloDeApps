@@ -1,4 +1,4 @@
-package udc.edu.co.cipasoldschool.proyectofinal.contactos;
+package udc.edu.co.cipasoldschool.proyectofinal.contactos.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,8 @@ import android.widget.Spinner;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import udc.edu.co.cipasoldschool.proyectofinal.contactos.R;
 
 public class CreateContactsActivity extends AppCompatActivity {
 

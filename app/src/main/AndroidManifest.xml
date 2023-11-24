@@ -13,16 +13,16 @@
         android:theme="@style/Theme.Contactos"
         tools:targetApi="31">
         <activity
-            android:name=".DeleteContactsActivity"
+            android:name=".view.DeleteContactsActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdateContactsActivity"
+            android:name=".view.UpdateContactsActivity"
             android:exported="false" />
         <activity
-            android:name=".ListContactsActivity"
+            android:name=".view.ListContactsActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateContactsActivity"
+            android:name=".view.CreateContactsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
