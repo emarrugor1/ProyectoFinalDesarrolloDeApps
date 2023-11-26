@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import java.io.IOException;
 import java.util.List;
 
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.hubspotapi.service.HubspotService;
@@ -21,6 +22,9 @@ public class ViewModel extends AndroidViewModel {
     }
     public MutableLiveData<Contacts> obtenerContactos(){
         return hubspotService.obtenerContactos();
+    }
+    public Contacts obtenerContactosHubspot() throws IOException {
+        return hubspotService.obtenerContactosHubspot();
     }
 
 }

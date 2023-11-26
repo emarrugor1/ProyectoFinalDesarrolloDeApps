@@ -29,11 +29,14 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     public void setContactList(List<Contact> contactList) {
         this.contactList = contactList;
     }
-
-    @NonNull
+    public void actualizarDatos(List<Contact> nuevosUsuarios) {
+        contactList.clear();
+        contactList.addAll(nuevosUsuarios);
+        notifyDataSetChanged();
+    }
     @Override
-    public ContactListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_contact_layout, null);
+    public ContactListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.list_element, null);
         return new ContactListAdapter.ViewHolder(view);
     }
 
@@ -41,6 +44,9 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bindData(contactList.get(position));
 
+    }
+    public void setItems(List<Contact> items){
+        this.contactList = items;
     }
 
     @Override
@@ -54,24 +60,18 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         TextView email;
         TextView typeId;
         TextView numberId;
-        TextView phoneNumber;
-        TextView birthDate;
         public ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.contactName);
             email = itemView.findViewById(R.id.contactEmail);
             typeId = itemView.findViewById(R.id.contactTypeId);
             numberId = itemView.findViewById(R.id.contactNumberId);
-            phoneNumber = itemView.findViewById(R.id.contactPhone);
-            birthDate = itemView.findViewById(R.id.birthDate);
         }
         void bindData(Contact contact){
             name.setText(contact.getProperties().getName());
             email.setText(contact.getProperties().getEmail());
             typeId.setText(contact.getProperties().getTypeId());
             numberId.setText(contact.getProperties().getNumberId());
-            phoneNumber.setText(contact.getProperties().getPhoneNumber());
-            birthDate.setText(contact.getProperties().getBirthDate());
         }
     }
 }
