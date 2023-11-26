@@ -14,9 +14,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.R;
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contact;
@@ -27,46 +30,32 @@ import udc.edu.co.cipasoldschool.proyectofinal.contactos.viewmodel.ViewModel;
 
 public class ListContactsActivity extends AppCompatActivity {
 
+    private List<Contact> contactList;
     private Toolbar toolbar;
     private ViewModel viewModel;
+    private final Executor executor = Executors.newSingleThreadExecutor();;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_contacts);
 
-
         toolbar = findViewById(R.id.listContactsToolbar);
         setSupportActionBar(toolbar);
 
-        //viewModel = new ViewModelProvider(this).get(ViewModel.class);
-
-
-        List<Contact> contactList = new ArrayList<>();
-        Properties properties = new Properties();
-        properties.setName("Edwin");
-        properties.setEmail("emailEdwin@hotmain.com");
-        properties.setBirthDate("21/09/02");
-        properties.setNumberId("12345");
-        properties.setTypeId("CC");
-        contactList.add(new Contact("1", properties));
+        viewModel = new ViewModelProvider(this).get(ViewModel.class);
+        contactList = new ArrayList<>();
 
         RecyclerView recyclerView = findViewById(R.id.contactsRecyclerView);
 
-        ContactListAdapter adapter = new ContactListAdapter(contactList, this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ContactListAdapter adapter = new ContactListAdapter(contactList, ListContactsActivity.this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ListContactsActivity.this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-/*
-        viewModel.obtenerContactos().observe(this, new Observer<Contacts>() {
-            @Override
-            public void onChanged(Contacts contacts) {
-                adapter.setContactList(Arrays.asList(contacts.getResults()));
-            }
+        viewModel.obtenerContactos().observe(this, items -> {
+            adapter.setItems(Arrays.asList(items.getResults()));
+            adapter.notifyDataSetChanged();
         });
-
- */
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -76,7 +65,6 @@ public class ListContactsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.listContactItems) {
             Intent intent = new Intent(this, this.getClass());
             startActivity(intent);

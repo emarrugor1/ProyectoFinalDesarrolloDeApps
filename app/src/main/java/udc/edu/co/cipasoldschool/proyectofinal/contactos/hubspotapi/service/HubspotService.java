@@ -2,6 +2,7 @@ package udc.edu.co.cipasoldschool.proyectofinal.contactos.hubspotapi.service;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -27,7 +28,7 @@ public class HubspotService {
     }
     public MutableLiveData<Contacts> obtenerContactos() {
         Call<Contacts> call = hubspotApi.getContacts(
-                "firsname,phone,email,tipo_identificacion,numero_identificacion,fecha_de_nacimiento");
+                "firstname,email,phone,tipo_identificacion,numero_identificacion,fecha_de_nacimiento,professional_profile,formacion_academica,experiencia");
         call.enqueue(new Callback<Contacts>() {
             @Override
             public void onResponse(Call<Contacts> call, Response<Contacts> response) {
@@ -43,5 +44,12 @@ public class HubspotService {
         });
 
         return contactos;
+    }
+    public Contacts obtenerContactosHubspot() throws IOException {
+        Call<Contacts> call = hubspotApi.getContacts(
+                "firstname,email,phone,tipo_identificacion,numero_identificacion,fecha_de_nacimiento,professional_profile,formacion_academica,experiencia");
+        Response<Contacts> execute = call.execute();
+
+        return execute.body();
     }
 }
