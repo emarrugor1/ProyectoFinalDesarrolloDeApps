@@ -11,11 +11,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.hubspotapi.retrofit.HubspotApi;
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contact;
+import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contacts;
 
 public class HubspotService {
     private static final String BASE_URL = "https://api.hubapi.com/";
     private HubspotApi hubspotApi;
-    private MutableLiveData<List<Contact>> contactos = new MutableLiveData<>();
+    private MutableLiveData<Contacts> contactos = new MutableLiveData<>();
 
     public HubspotService() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -24,18 +25,19 @@ public class HubspotService {
                 .build();
         hubspotApi = retrofit.create(HubspotApi.class);
     }
-    public MutableLiveData<List<Contact>> obtenerContactos() {
-        Call<List<Contact>> call = hubspotApi.getContacts();
-        call.enqueue(new Callback<List<Contact>>() {
+    public MutableLiveData<Contacts> obtenerContactos() {
+        Call<Contacts> call = hubspotApi.getContacts(
+                "firsname,phone,email,tipo_identificacion,numero_identificacion,fecha_de_nacimiento");
+        call.enqueue(new Callback<Contacts>() {
             @Override
-            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
+            public void onResponse(Call<Contacts> call, Response<Contacts> response) {
                 if (response.isSuccessful()) {
                     contactos.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Contact>> call, Throwable t) {
+            public void onFailure(Call<Contacts> call, Throwable t) {
                 // Manejar fallo de la solicitud
             }
         });

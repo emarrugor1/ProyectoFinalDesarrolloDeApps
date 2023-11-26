@@ -3,104 +3,32 @@ package udc.edu.co.cipasoldschool.proyectofinal.contactos.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Contact {
-    @SerializedName("firstname")
-    private String name;
-    @SerializedName("phone")
-    private String phoneNumber;
-    @SerializedName("email")
-    private String email;
-    @SerializedName("tipo_identificacion")
-    private String typeId;
-    @SerializedName("numero_identificacion")
-    private String numberId;
-    @SerializedName("professional_profile")
-    private String professionalProfile;
-    @SerializedName("conocimiento_tecnico")
-    private String technicalKnowledge;
-    @SerializedName("experiencia")
-    private String experience;
-    @SerializedName("formacion_academica")
-    private String academicBackground;
-    @SerializedName("fecha_de_nacimiento")
-    private String birthDate;
+    @SerializedName("id")
+    private String id;
+    @SerializedName("properties")
+    private Properties properties;
 
-    public String getName() {
-        return name;
+    public Contact(String id, Properties properties) {
+        this.id = id;
+        this.properties = properties;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Contact() {
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getId() {
+        return id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public Properties getProperties() {
+        return properties;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(String typeId) {
-        this.typeId = typeId;
-    }
-
-    public String getNumberId() {
-        return numberId;
-    }
-
-    public void setNumberId(String numberId) {
-        this.numberId = numberId;
-    }
-
-    public String getProfessionalProfile() {
-        return professionalProfile;
-    }
-
-    public void setProfessionalProfile(String professionalProfile) {
-        this.professionalProfile = professionalProfile;
-    }
-
-    public String getTechnicalKnowledge() {
-        return technicalKnowledge;
-    }
-
-    public void setTechnicalKnowledge(String technicalKnowledge) {
-        this.technicalKnowledge = technicalKnowledge;
-    }
-
-    public String getExperience() {
-        return experience;
-    }
-
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
-
-    public String getAcademicBackground() {
-        return academicBackground;
-    }
-
-    public void setAcademicBackground(String academicBackground) {
-        this.academicBackground = academicBackground;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 }
