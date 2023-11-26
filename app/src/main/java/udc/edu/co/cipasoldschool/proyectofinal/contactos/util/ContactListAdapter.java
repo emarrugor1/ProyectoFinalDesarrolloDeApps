@@ -20,11 +20,16 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     private final LayoutInflater inflater;
     private final Context context;
 
-    public ContactListAdapter(List<Contact> contactList, LayoutInflater inflater, Context context) {
+    public ContactListAdapter(List<Contact> contactList, Context context) {
         this.contactList = contactList;
         this.inflater = LayoutInflater.from(context);
         this.context = context;
     }
+
+    public void setContactList(List<Contact> contactList) {
+        this.contactList = contactList;
+    }
+
     @NonNull
     @Override
     public ContactListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -61,12 +66,12 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             birthDate = itemView.findViewById(R.id.birthDate);
         }
         void bindData(Contact contact){
-            name.setText(contact.getName());
-            email.setText(contact.getEmail());
-            typeId.setText(contact.getTypeId());
-            numberId.setText(contact.getNumberId());
-            phoneNumber.setText(contact.getPhoneNumber());
-            birthDate.setText(contact.getBirthDate());
+            name.setText(contact.getProperties().getName());
+            email.setText(contact.getProperties().getEmail());
+            typeId.setText(contact.getProperties().getTypeId());
+            numberId.setText(contact.getProperties().getNumberId());
+            phoneNumber.setText(contact.getProperties().getPhoneNumber());
+            birthDate.setText(contact.getProperties().getBirthDate());
         }
     }
 }

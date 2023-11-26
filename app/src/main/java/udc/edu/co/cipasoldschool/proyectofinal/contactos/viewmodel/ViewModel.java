@@ -10,6 +10,7 @@ import java.util.List;
 
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.hubspotapi.service.HubspotService;
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contact;
+import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contacts;
 
 public class ViewModel extends AndroidViewModel {
     private HubspotService hubspotService;
@@ -18,7 +19,7 @@ public class ViewModel extends AndroidViewModel {
         super(application);
         hubspotService = new HubspotService();
     }
-    public MutableLiveData<List<Contact>> obtenerContactos(){
+    public MutableLiveData<Contacts> obtenerContactos(){
         return hubspotService.obtenerContactos();
     }
 
