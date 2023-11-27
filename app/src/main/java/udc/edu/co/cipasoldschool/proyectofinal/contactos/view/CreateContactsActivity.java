@@ -1,9 +1,5 @@
 package udc.edu.co.cipasoldschool.proyectofinal.contactos.view;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,28 +9,47 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.R;
+import udc.edu.co.cipasoldschool.proyectofinal.contactos.hubspotapi.request.CreateContactPropertiesRequest;
+import udc.edu.co.cipasoldschool.proyectofinal.contactos.hubspotapi.request.CreateContactRequest;
+import udc.edu.co.cipasoldschool.proyectofinal.contactos.viewmodel.ViewModel;
 
 public class CreateContactsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private EditText birthDate;
+    private EditText name;
+    private EditText emailAddress;
+    private EditText phoneNumber;
+    private EditText professionalProfile;
+    private EditText academicBackground;
+    private EditText technicalKnowledge;
+    private EditText experience;
+    private EditText numberId;
 
     private Spinner typeIdSelector;
+    private ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_contacts);
+        viewModel = new ViewModelProvider(this).get(ViewModel.class);
 
         toolbar = findViewById(R.id.create_contacts_toolbar);
         setSupportActionBar(toolbar);
-
+        initFields();
         birthDate = findViewById(R.id.birthDate);
         typeIdSelector = findViewById(R.id.typeIdSelector);
 
@@ -45,6 +60,16 @@ public class CreateContactsActivity extends AppCompatActivity {
         adapter.add("TI");
         adapter.add("EX");
 
+    }
+    public void initFields(){
+        name = findViewById(R.id.name);
+        emailAddress = findViewById(R.id.emailAddress);
+        phoneNumber = findViewById(R.id.phoneNumber);
+        professionalProfile = findViewById(R.id.professionalProfile);
+        academicBackground = findViewById(R.id.academicBackground);
+        technicalKnowledge = findViewById(R.id.technicalKnowledge);
+        experience = findViewById(R.id.experience);
+        numberId = findViewById(R.id.numberId);
     }
     public void showCalendar(View view){
         Calendar calendar = Calendar.getInstance();
@@ -74,10 +99,35 @@ public class CreateContactsActivity extends AppCompatActivity {
         } else if (id == R.id.createContactItem) {
             Intent intent = new Intent(this, this.getClass());
             startActivity(intent);
-        } else if (id == R.id.updateContactsItem) {
-            Intent intent = new Intent(this, UpdateContactsActivity.class);
-            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void createContact(View view){
+
+        CreateContactRequest request = new CreateContactRequest();
+        CreateContactPropertiesRequest propertiesRequest = new CreateContactPropertiesRequest();
+
+
+        propertiesRequest.setEmail(emailAddress.getText().toString());
+        propertiesRequest.setExperience(experience.getText().toString());
+        propertiesRequest.setName(name.getText().toString());
+        propertiesRequest.setAcademicBackground(academicBackground.getText().toString());
+        propertiesRequest.setPhone(phoneNumber.getText().toString());
+        propertiesRequest.setBirthDate(birthDate.getText().toString());
+        propertiesRequest.setProfessionalProfile(professionalProfile.getText().toString());
+        propertiesRequest.setNumberId(numberId.getText().toString());
+        propertiesRequest.setTypeId(typeIdSelector.getSelectedItem().toString());
+        propertiesRequest.setTechnicalKnowledge(technicalKnowledge.getText().toString());
+
+        request.setProperties(propertiesRequest);
+
+        viewModel.createContact(request).observe(this, response -> {
+            if (response.getId() != null){
+                Toast.makeText(this, "Insercion exitosa", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this, "Insercion fallida", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 }

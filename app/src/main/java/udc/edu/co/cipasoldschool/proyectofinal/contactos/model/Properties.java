@@ -21,6 +21,8 @@ public class Properties {
     private String academicBackground;
     @SerializedName("professional_profile")
     private String professionalProfile;
+    @SerializedName("conocimiento_tecnico")
+    private String technicalKnowledge;
 
 
     @SerializedName("createdate")
@@ -30,7 +32,7 @@ public class Properties {
     @SerializedName("lastmodifieddate")
     private String lastModifiedDate;
 
-    public Properties(String name, String phoneNumber, String email, String typeId, String numberId, String birthDate, String experience, String academicBackground, String professionalProfile, String createDate, String objectId, String lastModifiedDate) {
+    public Properties(String name, String phoneNumber, String email, String typeId, String numberId, String birthDate, String experience, String academicBackground, String professionalProfile, String technicalKnowledge, String createDate, String objectId, String lastModifiedDate) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -40,9 +42,18 @@ public class Properties {
         this.experience = experience;
         this.academicBackground = academicBackground;
         this.professionalProfile = professionalProfile;
+        this.technicalKnowledge = technicalKnowledge;
         this.createDate = createDate;
         this.objectId = objectId;
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getTechnicalKnowledge() {
+        return technicalKnowledge;
+    }
+
+    public void setTechnicalKnowledge(String technicalKnowledge) {
+        this.technicalKnowledge = technicalKnowledge;
     }
 
     public String getCreateDate() {
