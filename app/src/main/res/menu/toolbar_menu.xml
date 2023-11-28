@@ -7,7 +7,4 @@
     <item
         android:id="@+id/createContactItem"
         android:title="@string/insert_contacts_item" />
-    <item
-        android:id="@+id/updateContactsItem"
-        android:title="@string/update_contacts_item" />
 </menu>
