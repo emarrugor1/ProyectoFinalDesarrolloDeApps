@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">contactos</string>
+    <string name="insert_contacts_item">Guardar contactos</string>
+    <string name="update_contacts_item">Actualizar contactos</string>
+    <string name="delete_contacts_item">Eliminar contactos</string>
+    <string name="get_contacts_item">Listar contactos</string>
+    <string name="application_logo_title">CIPAS OLD SCHOOL</string>
+    <string name="toolbar_title_create">Crear contactos</string>
+    <string name="name_field_hint">Nombre completo</string>
+    <string name="phone_field_hint">Número de celular</string>
+    <string name="email_field_hint">Correo</string>
+    <string name="type_id_field_hint">Tipo de identificación</string>
+    <string name="number_id_field_hint">Número de identificación</string>
+    <string name="professional_profile_field_hint">Perfil profesional</string>
+    <string name="technical_knowledge_field_hint">Conocimientos técnicos</string>
+    <string name="experience_field_hint">Experiencia</string>
+    <string name="academic_background_field_hint">Formación académica</string>
+    <string name="birth_date_field_hint">Fecha de nacimiento</string>
+    <string name="save_button">Guardar contacto</string>
 </resources>

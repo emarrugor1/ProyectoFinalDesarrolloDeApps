@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/listContactItems"
+        android:title="@string/get_contacts_item" />
+    <item
+        android:id="@+id/createContactItem"
+        android:title="@string/insert_contacts_item" />
+</menu>
