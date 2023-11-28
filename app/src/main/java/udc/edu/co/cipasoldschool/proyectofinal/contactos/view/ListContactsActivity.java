@@ -1,30 +1,23 @@
 package udc.edu.co.cipasoldschool.proyectofinal.contactos.view;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.R;
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contact;
-import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contacts;
-import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Properties;
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.util.ContactListAdapter;
 import udc.edu.co.cipasoldschool.proyectofinal.contactos.viewmodel.ViewModel;
 
@@ -33,7 +26,6 @@ public class ListContactsActivity extends AppCompatActivity {
     private List<Contact> contactList;
     private Toolbar toolbar;
     private ViewModel viewModel;
-    private final Executor executor = Executors.newSingleThreadExecutor();;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,9 +62,6 @@ public class ListContactsActivity extends AppCompatActivity {
             startActivity(intent);
         } else if (id == R.id.createContactItem) {
             Intent intent = new Intent(this, CreateContactsActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.updateContactsItem) {
-            Intent intent = new Intent(this, UpdateContactsActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
