@@ -2,17 +2,22 @@ package udc.edu.co.cipasoldschool.proyectofinal.contactos.hubspotapi.request;
 
 import com.google.gson.annotations.SerializedName;
 
-import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contact;
-
 public class CreateContactRequest {
     @SerializedName("properties")
-    private Contact properties;
+    private CreateContactPropertiesRequest properties;
 
-    public Contact getProperties() {
+    public CreateContactRequest(CreateContactPropertiesRequest properties) {
+        this.properties = properties;
+    }
+
+    public CreateContactRequest() {
+    }
+
+    public CreateContactPropertiesRequest getProperties() {
         return properties;
     }
 
-    public void setProperties(Contact properties) {
+    public void setProperties(CreateContactPropertiesRequest properties) {
         this.properties = properties;
     }
 }
