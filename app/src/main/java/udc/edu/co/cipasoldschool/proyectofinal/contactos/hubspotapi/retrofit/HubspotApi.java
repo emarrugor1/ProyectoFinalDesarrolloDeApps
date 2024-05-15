@@ -12,11 +12,11 @@ import udc.edu.co.cipasoldschool.proyectofinal.contactos.model.Contacts;
 
 public interface HubspotApi {
 
-    @Headers({"Content-Type: application/json","Authorization: Bearer ***REMOVED***"})
+    @Headers({"Content-Type: application/json","Authorization: Bearer pat-na1-6bc42f9b-dc27-4ae0-a304-2de2cb5d3ae2"})
     @POST("crm/v3/objects/contacts")
     Call<CreateContactResponse> createContact(@Body CreateContactRequest contacto);
 
-    @Headers({"Content-Type: application/json","Authorization: Bearer ***REMOVED***"})
+    @Headers({"Content-Type: application/json","Authorization: Bearer pat-na1-6bc42f9b-dc27-4ae0-a304-2de2cb5d3ae2"})
     @GET("crm/v3/objects/contacts")
     Call<Contacts> getContacts(@Query("properties") String properties);
 }
